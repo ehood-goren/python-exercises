@@ -113,7 +113,8 @@ def is_prime(num):
     Hints:
     - I can do this any day, and all day long!
     """
-    pass
+    return len([i for i in range(2,num) if num % i == 0]) == 0
+# print(is_prime(7))
 
 
 def caesar_encrypt(plain, key):
