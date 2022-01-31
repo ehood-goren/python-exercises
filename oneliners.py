@@ -94,9 +94,8 @@ def all_time_champion(champions):
     - max
     - lambda
     """
-    win_count = distribution(champions)
-    print(max(win_count.values()))
-print(all_time_champion(formula1Champions))
+    return max(distribution(champions), key=distribution(champions).get)
+# print(all_time_champion(formula1Champions))
 
 def dictify(keys, values):
     """
