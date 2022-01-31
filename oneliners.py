@@ -97,11 +97,13 @@ def all_time_champion(champions):
     return max(distribution(champions), key=distribution(champions).get)
 # print(all_time_champion(formula1Champions))
 
+
 def dictify(keys, values):
     """
     Creates a dict mapping the given keys to the given values.
     """
-    pass
+    return dict(zip(keys, values))
+# print(dictify(['a','d','e','h'], (7,2,4,9)))
 
 
 def is_prime(num):
