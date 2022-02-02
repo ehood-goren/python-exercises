@@ -111,13 +111,17 @@ def play_game(board_size: int = None):
         board_size = random.choice(RANDOM_SIZES)
     board = create_board(board_size)
     current_player = X
-    while not won(current_player, board):
+    game_won = False
+    while not game_won:
         show_board(board)
         coordinates = get_move(current_player)
         update_board(board, current_player, coordinates)
-        current_player = switch_player(current_player)
+        game_won = won(current_player, board)
+        if not game_won:
+            current_player = switch_player(current_player)
     show_winner(current_player)
 
 
 if __name__ == '__main__':
-    play_game()
+    # play_game()
+    play_game(3)
