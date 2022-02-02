@@ -110,12 +110,13 @@ def play_game(board_size: int = None):
     if not board_size:
         board_size = random.choice(RANDOM_SIZES)
     board = create_board(board_size)
+    show_board(board)
     current_player = X
     game_won = False
     while not game_won:
-        show_board(board)
         coordinates = get_move(current_player)
         update_board(board, current_player, coordinates)
+        show_board(board)
         game_won = won(current_player, board)
         if not game_won:
             current_player = switch_player(current_player)
