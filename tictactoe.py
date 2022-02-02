@@ -101,6 +101,10 @@ def switch_player(current_player: Player) -> Player:
     return X if current_player == O else O
 
 
+def check_empty_coords(board: Board, coords: Coords) -> bool:
+    return board[coords[0]][coords[1]] == EMPTY
+
+
 def play_game(board_size: int = None):
     """
     Play a game of Tic-Tac-Toe.
@@ -115,6 +119,10 @@ def play_game(board_size: int = None):
     game_won = False
     while not game_won:
         coordinates = get_move(current_player)
+        empty_coords = check_empty_coords(board, coordinates)
+        if(not empty_coords):
+            print('Spot taken! Choose another')
+            continue
         update_board(board, current_player, coordinates)
         show_board(board)
         game_won = won(current_player, board)
