@@ -46,8 +46,14 @@ def check_columns(board, player):
     return False
 
 
+def check_diagonals(board: Board, player: Player) -> bool:
+    diagonal_one = board[0][0] == player == board[1][1] == board[2][2]
+    diagonal_two = board[0][2] == player == board[1][1] == board[2][0]
+    return diagonal_one or diagonal_two
+
+
 def won(player: Player, board: Board) -> bool:
-    return check_rows(board, player) or check_columns(board, player)
+    return check_rows(board, player) or check_columns(board, player) or check_diagonals(board, player)
 
 
 def update_board(board: Board, player: Player, coords: Coords):
