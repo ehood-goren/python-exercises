@@ -29,14 +29,28 @@ def create_board(size: int) -> Board:
     return board
 
 
-def check_rows(board, player):
+def check_rows(board: Board, player: Player) -> bool:
+    """
+    Check if a player has won in one of the rows
+
+    :param board: the board to check
+    :param player: the player to check if won
+    :return: if the player has won
+    """
     for row in board:
         if row.count(player) == len(row):
             return True
     return False
 
 
-def check_columns(board, player):
+def check_columns(board: Board, player: Player) -> bool:
+    """
+    Check if a player has won in one of the columns
+
+    :param board: the board to check
+    :param player: the player to check if won
+    :return: if the player has won
+    """
     for i, row in enumerate(board):
         marks = 0
         for j in range(len(row)):
@@ -47,12 +61,26 @@ def check_columns(board, player):
 
 
 def check_diagonals(board: Board, player: Player) -> bool:
+    """
+    Check if a player has won in one of the diagonals
+
+    :param board: the board to check
+    :param player: the player to check if won
+    :return: if the player has won
+    """
     diagonal_one = board[0][0] == player == board[1][1] == board[2][2]
     diagonal_two = board[0][2] == player == board[1][1] == board[2][0]
     return diagonal_one or diagonal_two
 
 
 def won(player: Player, board: Board) -> bool:
+    """
+    Check if a player has won in any direction
+
+    :param player: the player to check if won
+    :param board: the board to check
+    :return: if the player has won
+    """
     return check_rows(board, player) or check_columns(board, player) or check_diagonals(board, player)
 
 
@@ -108,10 +136,23 @@ def switch_player(current_player: Player) -> Player:
 
 
 def check_empty_coords(board: Board, coords: Coords) -> bool:
+    """
+    Check if the board is empty in the given coordinates
+
+    :param board: the board to check
+    :param coords: pair of coordinates (row, column)
+    :return: if the tile is empty
+    """
     return board[coords[0]][coords[1]] == EMPTY
 
 
-def check_draw(board: Board):
+def check_draw(board: Board) -> bool:
+    """
+    Check if the board has no more empty tiles, resulting in a draw
+
+    :param board: the board to check
+    :return: if the game ended in a draw
+    """
     for row in board:
         if row.count(EMPTY) > 0:
             return False
