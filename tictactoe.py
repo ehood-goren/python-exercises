@@ -105,6 +105,13 @@ def check_empty_coords(board: Board, coords: Coords) -> bool:
     return board[coords[0]][coords[1]] == EMPTY
 
 
+def check_draw(board: Board):
+    for row in board:
+        if row.count(EMPTY) > 0:
+            return False
+    return True
+
+
 def play_game(board_size: int = None):
     """
     Play a game of Tic-Tac-Toe.
@@ -127,6 +134,8 @@ def play_game(board_size: int = None):
         show_board(board)
         game_won = won(current_player, board)
         if not game_won:
+            if(check_draw(board)):
+                return print('Its a draw!')
             current_player = switch_player(current_player)
     show_winner(current_player)
 
