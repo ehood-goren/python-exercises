@@ -144,6 +144,7 @@ def all_time_champion2(champions):
     return Counter(champions).most_common(1)[0][0]
 print(all_time_champion2(formula1Champions))
 
+
 def factorial(num):
     """
     Computes the factorial of a number (1 * 2 * 3 * ... * num).
@@ -158,7 +159,8 @@ def factorial(num):
           '''
           pass
     """
-    pass
+    return num if num == 1 else num * factorial(num - 1)
+# print(factorial(7))
 
 
 def compose(*funcs):
