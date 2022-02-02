@@ -142,7 +142,7 @@ def all_time_champion2(champions):
     """
     from collections import Counter
     return Counter(champions).most_common(1)[0][0]
-print(all_time_champion2(formula1Champions))
+# print(all_time_champion2(formula1Champions))
 
 
 def factorial(num):
@@ -171,4 +171,9 @@ def compose(*funcs):
     Hints:
     - from functools import reduce
     """
-    pass
+    from functools import reduce
+    return reduce(lambda f, g: lambda x: f(g(x)), funcs)
+f = lambda x: x*3
+g = lambda x: x+2
+h = lambda x: x**2
+print(compose(f,g,h)(5))
