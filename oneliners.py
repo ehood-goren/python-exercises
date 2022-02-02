@@ -140,8 +140,9 @@ def all_time_champion2(champions):
     - import
     - Counter
     """
-    pass
-
+    from collections import Counter
+    return Counter(champions).most_common(1)[0][0]
+print(all_time_champion2(formula1Champions))
 
 def factorial(num):
     """
