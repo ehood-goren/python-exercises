@@ -53,10 +53,11 @@ def distribution(items):
     """
     Finds how many times each item appears in a sequence of items.
     """
-    count_set = {}
-    for a in items:
-        count_set[a] = count_set[a] + 1 if(a in count_set) else 1
-    return count_set
+    # count_set = {}
+    # for a in items:
+    #     count_set[a] = count_set[a] + 1 if(a in count_set) else 1
+    # return count_set
+    return {item: items.count(item) for item in items}
 # print(distribution([1,2,3,3,3,3,2,1]))
 
 # remember us? :)
@@ -125,8 +126,9 @@ def caesar_encrypt(plain, key):
     - from string import ascii_letters
     - https://www.youtube.com/watch?v=IjcX3MVSdyA
     """
-    pass
-
+    from string import ascii_letters as al
+    return ''.join(al[(al.index(char) + key) % len(al)] if char in al else char for char in plain)
+# print(caesar_encrypt('abcmnoxyzABCMNOXYZ qrs', 3))
 
 def all_time_champion2(champions):
     """
