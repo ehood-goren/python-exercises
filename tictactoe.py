@@ -60,6 +60,35 @@ def check_columns(board: Board, player: Player) -> bool:
     return False
 
 
+def diagonal_one(board: Board, player: Player) -> bool:
+    """
+    Check if a player has won in the diagonal going from upper left to bottom right
+
+    :param board: the board to check
+    :param player: the player to check if won
+    :return: if the player has won
+    """
+    marks = 0
+    for i, row in enumerate(board):
+        marks += board[i][i] == player
+    return marks == len(row)
+
+
+def diagonal_two(board: Board, player: Player) -> bool:
+    """
+    Check if a player has won in the diagonal going from upper right to bottom left
+
+    :param board: the board to check
+    :param player: the player to check if won
+    :return: if the player has won
+    """
+    marks = 0
+    for i, row in enumerate(board):
+        column_for_i = len(row) - 1 - i
+        marks += board[i][column_for_i] == player
+    return marks == len(row)
+
+
 def check_diagonals(board: Board, player: Player) -> bool:
     """
     Check if a player has won in one of the diagonals
@@ -68,9 +97,7 @@ def check_diagonals(board: Board, player: Player) -> bool:
     :param player: the player to check if won
     :return: if the player has won
     """
-    diagonal_one = board[0][0] == player == board[1][1] == board[2][2]
-    diagonal_two = board[0][2] == player == board[1][1] == board[2][0]
-    return diagonal_one or diagonal_two
+    return diagonal_one(board, player) or diagonal_two(board, player)
 
 
 def won(player: Player, board: Board) -> bool:
@@ -188,5 +215,4 @@ def play_game(board_size: int = None):
 
 
 if __name__ == '__main__':
-    # play_game()
-    play_game(3)
+    play_game()
