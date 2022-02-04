@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import datetime
 import requests
 from bs4 import BeautifulSoup
@@ -28,10 +29,10 @@ def create_word_dir(word: str):
     :param word: the searched word
     :return: the dir path of the current search of the word
     """
-    os.mkdir(word)
+    Path(f"results/{word}").mkdir(exist_ok = True)
     current_time = datetime.datetime.now()
     format_time = current_time.strftime("%Y-%m-%d %H-%M-%S")
-    images_path = f"{word}/{format_time}"
+    images_path = f"results/{word}/{format_time}"
     os.mkdir(images_path)
     return images_path
 
